@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+/**
+ * Authentication routes. If you want to require users to verify their email
+ * addresses before using the application make sure you add the `verify` option
+ * like: Auth::routes(['verify' => true]);
+ *
+ * @see https://laravel.com/docs/7.x/verification#verification-routing
+ */
+Auth::routes(['verify' => true]);
 
-Route::resource('/users', 'UserController')->middleware('auth');
+
+/**
+ * Route group for all routes that are only allowed to authenticated and
+ * verified users.
+ */
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resource('/users', 'UserController');
+
+});
