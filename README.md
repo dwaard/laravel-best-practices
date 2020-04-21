@@ -1,6 +1,6 @@
 # Laravel Best Practices
 
-Demonstrates best practices when working with Laravel and Github.
+Demonstrates best practices when working with Laravel and Github. The project [wiki](https://github.com/dwaard/laravel-best-practices/wiki) describes these best practices. 
 
 ## Getting Started
 
@@ -113,3 +113,7 @@ participated in this project.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgements
+
+See the [wiki acknowledgements](https://github.com/dwaard/laravel-best-practices/wiki#acknowledgements) for hat tips to anyone whose code and best practices are used.
