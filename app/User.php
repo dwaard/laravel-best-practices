@@ -10,6 +10,7 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * App\User
@@ -17,6 +18,9 @@ use Illuminate\Support\Carbon;
  * @property int $id
  * @property string $name
  * @property string $email
+ * @property string $image
+ * @property string|null $provider
+ * @property string|null $provider_id
  * @property Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
@@ -35,6 +39,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User wherePassword($value)
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereUpdatedAt($value)
+ * @method static Builder|User whereImage($value)
+ * @method static Builder|User whereProvider($value)
+ * @method static Builder|User whereProviderId($value)
  * @mixin Eloquent
  */
 class User extends Authenticatable implements MustVerifyEmail
@@ -47,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'image', 'provider', 'provider_id', 'password',
     ];
 
     /**
@@ -67,4 +74,5 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

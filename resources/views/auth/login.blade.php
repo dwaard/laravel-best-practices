@@ -64,6 +64,40 @@
                                 @endif
                             </div>
                         </div>
+                        {{-- social auth buttons --}}
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-4">
+                                <p>- OR -</p>
+                                <a href="/login/facebook" class="btn btn-block"
+                                   style="background-color: #3b5998; color: #fff;">
+                                    Sign in using Facebook
+                                </a>
+                                <a href="/login/twitter" class="btn btn-block"
+                                   style="background-color: #4099ff; color: #fff;">
+                                    Sign in using Twitter
+                                </a>
+                                <a href="/login/linkedin" class="btn btn-block"
+                                   style="background-color: #0074AD; color: #fff;">
+                                    Sign in using LinkedIn
+                                </a>
+                                <a href="/login/google" class="btn btn-block"
+                                   style="background-color: #FFFFFF; color: grey;">
+                                    Sign in using Google
+                                </a>
+                                <a href="/login/github" class="btn btn-block"
+                                   style="background-color: #eff3f6; color: #24292e;">
+                                    Sign in using GitHub
+                                </a>
+                                <a href="/login/gitlab" class="btn btn-block"
+                                   style="background-color: #292961; color: #fff;">
+                                    Sign in using GitLab
+                                </a>
+                                <a href="/login/bitbucket" class="btn btn-block"
+                                   style="background-color: #0052CC; color: #fff;">
+                                    Sign in using Bitbucket
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

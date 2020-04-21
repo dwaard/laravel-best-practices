@@ -27,6 +27,14 @@ Auth::routes(['verify' => true]);
 
 
 /**
+ * Socialite required routes. Used to authenticate with OAuth providers using
+ * [Laravel Socialite](https://github.com/laravel/socialite)
+*/
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+
+/**
  * Route group for all routes that are only allowed to authenticated and
  * verified users.
  */
