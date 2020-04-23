@@ -43,6 +43,10 @@
                                         <p>Signed in as <strong>{{ Auth::user()->name }}</strong></p>
                                     </div>
                                     <hr class="navbar-divider">
+                                    <a class="navbar-item" href="{{route('account.show')}}">
+                                        <i class="fas fa-cog"></i>&nbspSettings
+                                    </a>
+                                    <hr class="navbar-divider">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
