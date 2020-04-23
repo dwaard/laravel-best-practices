@@ -44,4 +44,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('/users', 'UserController');
 
+    // Account management routes
+    Route::get('/account', 'AccountController@show')->name('account.show');
+    Route::post('/account/token', 'AccountController@createToken')
+        ->name('account.token.create');
+    Route::delete('/account/token/{id}', 'AccountController@revokeToken')
+    ->name('account.token.destroy');
 });
