@@ -1,87 +1,77 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.master')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+@section('body')
+    <nav class="navbar is-primary  has-text-white">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                   data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-menu" id="navbarSupportedContent">
+                <div class="navbar-start">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">Accounts</a>
-                        </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}"
-                                         class="rounded" style="height: 1.5rem;">
-                                     <span class="caret"></span>
+                    <a class="navbar-item" href="{{ route('home') }}">Dashboard</a>
+                    <a class="navbar-item" href="{{ route('users.index') }}">Accounts</a>
+                </div>                    <!-- Right Side Of Navbar -->
+                <div class="navbar-end">
+                    <!-- Authentication Links -->
+                    @guest
+                        <a class="navbar-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        @if (Route::has('register'))
+                            <a class="navbar-item" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        @endif
+                    @else
+                        <div class="navbar-item">
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link">
+                                    <figure class="image is-32x32">
+                                        <img class="is-rounded"
+                                             src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}"/>
+                                    </figure>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <h6 class="dropdown-header">Signed in as {{ Auth::user()->name }}</h6>
+                                <div class="navbar-dropdown">
+                                    <div class="navbar-item">
+                                        <p>Signed in as <strong>{{ Auth::user()->name }}</strong></p>
+                                    </div>
+                                    <hr class="navbar-divider">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt"></i>&nbsp
                                         {{ __('Logout') }}
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
-                        @endguest
-                    </ul>
+                            </div>
+
+                        </div>
+                    @endguest
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+    <div class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-desktop is-12-tablet">
+                    <div class="content">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+@endsection

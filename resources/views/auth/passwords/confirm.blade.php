@@ -1,49 +1,46 @@
-@extends('layouts.app')
+@extends('layouts.hero')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
-
-                <div class="card-body">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-6-tablet is-5-desktop is-4-widescreen">
+                <div class="title">{{ __('Confirm Password') }}</div>
+                <div class="box">
                     {{ __('Please confirm your password before continuing.') }}
-
                     <form method="POST" action="{{ route('password.confirm') }}">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
+                        <div class="field">
+                            <div class="control has-icons-left has-icons-right">
+                                <input type="password" name="password"
+                                       class="input @error('password') is-danger @enderror"
+                                       value="{{ old('password') }}" required autocomplete="password" autofocus>
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-key"></i>
+                                </span>
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="icon is-small is-right">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
                                 @enderror
                             </div>
+                            @error('password')
+                            <p class="help is-danger">{{ $message }}</p>
+                            @enderror
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                        <div class="field is-grouped">
+                            {{-- Here are the form buttons: save, reset and cancel --}}
+                            <div class="control">
+                                <button type="submit" class="button is-success">{{ __('Confirm Password') }}</button>
                             </div>
+                            @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            @endif
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
