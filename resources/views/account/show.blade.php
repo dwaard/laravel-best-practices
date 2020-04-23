@@ -18,8 +18,9 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Token</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Created at</th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -27,6 +28,17 @@
                                     <tr>
                                         <th scope="row">{{ $token->name }}</th>
                                         <td>{{ $token->created_at }}</td>
+                                        <td>
+                                            <a class="dropdown-item" href="{{ route('account.token.destroy', $token) }}"
+                                               onclick="event.preventDefault();
+                                                     document.getElementById('destroy-form-{{$token->id}}').submit();">
+                                                Delete
+                                            </a>
+                                            <form id="destroy-form-{{$token->id}}" action="{{ route('account.token.destroy', $token) }}" method="POST" style="display: none;">
+                                                @method('DELETE')
+                                                @csrf
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -37,10 +49,19 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('account.token.create') }}" method="POST">
+                        <form action="{{ route('account.token.create') }}" method="POST" class="form-inline">
                             @csrf
-                            <input type="text" name="name"/>
-                            <input type="submit" class="btn btn-success" value="Create token"/>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="inputPassword2" class="sr-only">Password</label>
+                                <input class="form-control @error('name') is-invalid @enderror" type="text"
+                                       name="name" placeholder="Token name">
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-2">Create token</button>
                         </form>
                     </div>
                 </div>
